@@ -1,0 +1,59 @@
+<div class="container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="user-info">
+      <img src="avatar.png" alt="User Avatar" />
+      <div>
+        <h3>Nguyen Minh Chau</h3>
+        <p>ItAdmin</p>
+      </div>
+    </div>
+    <nav class="menu">
+      <ul>
+        <li class="active"><i class="fas fa-users"></i> Quản lý Status</li>
+        <li><i class="fas fa-building"></i> Quản lý Task</li>
+        <li><i class="fas fa-briefcase"></i> Quản lý SubTask</li>
+      </ul>
+    </nav>
+    <button class="logout">
+      <i class="fas fa-sign-out-alt"></i> Đăng xuất
+    </button>
+  </aside>
+  <!-- Main Content -->
+  <main class="main-content">
+    <section class="filter-section">
+      <div class="filter-form">
+        <button class="search-btn" (click)="showForm()">
+          <i class="fas fa-search"></i> Tạo mới Status
+        </button>
+      </div>
+    </section>
+    <section class="table-section">
+      <h2>Danh sách status</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Mã Status</th>
+            <th>Tên Status</th>
+            <th>Mô Tả</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="6" class="no-data">Không có dữ liệu</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <div *ngIf="boolean" class="overlay" (click)="hideForm()">
+      <form *ngIf="boolean == true" class="form">
+        <label for="status">Status:</label>
+        <input type="text" id="status" name="status" required />
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" required />
+        <button (click)="hideForm()" type="submit">Submit</button>
+      </form>
+    </div>
+  </main>
+</div>
