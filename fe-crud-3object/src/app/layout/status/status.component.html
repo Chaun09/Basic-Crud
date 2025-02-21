@@ -33,27 +33,115 @@
       <table>
         <thead>
           <tr>
-            <th>Mã Status</th>
+            <th>Status index</th>
             <th>Tên Status</th>
             <th>Mô Tả</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <!-- <tr>
             <td colspan="6" class="no-data">Không có dữ liệu</td>
+          </tr> -->
+          <tr *ngFor="let status of Status; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ status.title }}</td>
+            <td>{{ status.description }}</td>
+            <td>
+              <button class="delete-btn" (click)="deleteStatus(status.id)">
+                Xóa
+              </button>
+              <button class="edit-btn" (click)="getStatusById(status.id)">
+                Cập nhật
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
     </section>
-    <div *ngIf="boolean" class="overlay" (click)="hideForm()">
-      <form *ngIf="boolean == true" class="form">
+    <div *ngIf="boolean" class="overlay">
+      <form [formGroup]="statusForm" *ngIf="boolean == true" class="form">
+        <h3>Tạo mới status</h3>
         <label for="status">Status:</label>
-        <input type="text" id="status" name="status" required />
+        <input
+          type="text"
+          formControlName="title"
+          id="status"
+          name="status"
+          required
+        />
+        <div
+          *ngIf="
+            statusForm.get('title')?.hasError('required') &&
+            statusForm.get('title')?.touched
+          "
+        >
+          <small class="text-danger"
+            >*Đây là trường dữ liệu bắt buộc nhập</small
+          >
+        </div>
         <label for="description">Description:</label>
-        <input type="text" id="description" name="description" required />
-        <button (click)="hideForm()" type="submit">Submit</button>
+        <input
+          type="text"
+          formControlName="description"
+          id="description"
+          name="description"
+          required
+        />
+        <div
+          *ngIf="
+            statusForm.get('description')?.hasError('required') &&
+            statusForm.get('description')?.touched
+          "
+        >
+          <small class="text-danger"
+            >*Đây là trường dữ liệu bắt buộc nhập</small
+          >
+        </div>
+        <button (click)="createStatus()" type="submit">Submit</button>
       </form>
     </div>
+    <!-- <div *ngIf="boolean" class="overlay">
+      <form [formGroup]="updateForm" *ngIf="boolean == true" class="form">
+        <h4>Form Cập nhật</h4>
+        <label for="status">Status:</label>
+        <input
+          type="text"
+          formControlName=""
+          id="status"
+          name="status"
+          required
+        />
+        <div
+          *ngIf="
+            statusForm.get('title')?.hasError('required') &&
+            statusForm.get('title')?.touched
+          "
+        >
+          <small class="text-danger"
+            >*Đây là trường dữ liệu bắt buộc nhập</small
+          >
+        </div>
+        <label for="description">Description:</label>
+        <input
+          type="text"
+          formControlName=""
+          id="description"
+          name="description"
+          required
+        />
+        <div
+          *ngIf="
+            statusForm.get('description')?.hasError('required') &&
+            statusForm.get('description')?.touched
+          "
+        >
+          <small class="text-danger"
+            >*Đây là trường dữ liệu bắt buộc nhập</small
+          >
+        </div>
+        <button (click)="updateStatus()" type="submit">Submit</button>
+      </form>
+    </div> -->
   </main>
 </div>

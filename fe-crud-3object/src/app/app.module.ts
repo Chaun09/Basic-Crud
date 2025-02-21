@@ -6,19 +6,23 @@ import { AppComponent } from './app.component';
 import { StatusComponent } from './layout/status/status.component';
 import { TaskComponent } from './layout/task/task.component';
 import { SubtaskComponent } from './layout/subtask/subtask.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     StatusComponent,
     TaskComponent,
-    SubtaskComponent
+    SubtaskComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
