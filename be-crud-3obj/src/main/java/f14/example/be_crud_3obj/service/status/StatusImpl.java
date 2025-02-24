@@ -58,5 +58,10 @@ public class StatusImpl implements IStatusService{
         return getAllStatus();
     }
 
+    @Override
+    public Status findTaskDB(Long id){
+        return statusRepository.findById(id).get();
+    }
+
 
 }
