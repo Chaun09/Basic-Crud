@@ -24,12 +24,20 @@ export class StatusServiceService {
       },
     });
   }
-  updateStatus(data: StatusDto, id: number): Observable<APIRes> {
-    return this.http.put<APIRes>(Domain + Status.update + id, data, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+  updateStatus(
+    title: string,
+    description: string,
+    id: number
+  ): Observable<APIRes> {
+    return this.http.put<APIRes>(
+      Domain + Status.update + id,
+      { title, description },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
   }
 
   getStatusById(id: number): Observable<StatusDT> {

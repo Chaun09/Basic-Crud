@@ -11,8 +11,14 @@
     <nav class="menu">
       <ul>
         <li class="active"><i class="fas fa-users"></i> Quản lý Status</li>
-        <li><i class="fas fa-building"></i> Quản lý Task</li>
-        <li><i class="fas fa-briefcase"></i> Quản lý SubTask</li>
+        <li>
+          <i class="fas fa-building"></i
+          ><a href="/task" class="link">Quản lý Task</a>
+        </li>
+        <li>
+          <i class="fas fa-briefcase"></i>
+          <a href="/subtask" class="link">Quản lý SubTask</a>
+        </li>
       </ul>
     </nav>
     <button class="logout">
@@ -99,17 +105,25 @@
           >
         </div>
         <button (click)="createStatus()" type="submit">Submit</button>
+        <button class="delete-btn" (click)="hideForm()" type="submit">
+          Hủy
+        </button>
       </form>
     </div>
-    <!-- <div *ngIf="boolean" class="overlay">
-      <form [formGroup]="updateForm" *ngIf="boolean == true" class="form">
+    <div *ngIf="status.id != 0" class="overlay">
+      <form
+        [formGroup]="updateForm"
+        *ngIf="status.id != 0 || boolean == true"
+        class="form"
+      >
         <h4>Form Cập nhật</h4>
         <label for="status">Status:</label>
         <input
           type="text"
-          formControlName=""
+          formControlName="title"
           id="status"
           name="status"
+          [(ngModel)]="status.title"
           required
         />
         <div
@@ -125,9 +139,10 @@
         <label for="description">Description:</label>
         <input
           type="text"
-          formControlName=""
+          formControlName="description"
           id="description"
           name="description"
+          [(ngModel)]="status.description"
           required
         />
         <div
@@ -140,8 +155,11 @@
             >*Đây là trường dữ liệu bắt buộc nhập</small
           >
         </div>
-        <button (click)="updateStatus()" type="submit">Submit</button>
+        <button (click)="updateStatus(status.id)" type="submit">Submit</button>
+        <button class="delete-btn" (click)="hideForm()" type="submit">
+          Hủy
+        </button>
       </form>
-    </div> -->
+    </div>
   </main>
 </div>

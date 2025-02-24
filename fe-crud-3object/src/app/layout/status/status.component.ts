@@ -27,6 +27,7 @@ export class StatusComponent {
   }
   hideForm() {
     this.boolean = false;
+    this.status.id = 0;
   }
   ngOnInit() {
     this.statusService.getAllStatus().subscribe((data) => {
@@ -50,11 +51,12 @@ export class StatusComponent {
 
   updateStatus(id: number) {
     this.statusService
-      .updateStatus(this.statusForm.value, id)
+      .updateStatus(this.status.title, this.status.description, id)
       .subscribe((data) => {
         this.ngOnInit();
         this.statusForm.reset();
         this.hideForm();
+        this.status.id = 0;
       });
   }
   status = {
